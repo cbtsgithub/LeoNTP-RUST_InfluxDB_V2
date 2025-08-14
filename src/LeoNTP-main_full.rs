@@ -39,7 +39,12 @@ fn unix_to_ymdhms(t: i64) -> (i32, u32, u32, u32, u32, u32) {
 }
 
 fn main() {
-    let cfg = Config::load("LeoNTP-config.ini").expect("Erreur de lecture de LeoNTP-config.ini");
+    // Résolution du chemin vers le fichier config
+    let config_path = Config::resolve_path_from_args_or_exe("LeoNTP-config.ini")
+        .expect("Impossible de déterminer le chemin du fichier de configuration");
+
+    let cfg = Config::load(config_path.to_str().unwrap())
+        .unwrap_or_else(|e| panic!("Erreur de lecture du fichier config {:?}: {}", config_path, e));
 
     let version: u8 = 4;
     let mode: u8 = 7;
@@ -167,33 +172,7 @@ fn main() {
         } else {
             eprintln!("❌ Empty/illegal HTTP response.");
         }
-    } else {
-        if cfg.options.show_stats {
-            println!("ℹ️  Envoi vers InfluxDB désactivé par configuration.");
-        }
+    } else if cfg.options.show_stats {
+        println!("ℹ️  Envoi vers InfluxDB désactivé par configuration.");
     }
 }
-
-// ====== URL encoder ======
-fn url_encode(s: &str) -> String {
-    let mut out = String::with_capacity(s.len());
-    for &b in s.as_bytes() {
-        match b {
-            b'A'..=b'Z' | b'a'..=b'z' | b'0'..=b'9' | b'-' | b'_' | b'.' | b'~' => out.push(b as char),
-            _ => {
-                out.push('%');
-                out.push(hex((b >> 4) & 0xF));
-                out.push(hex(b & 0xF));
-            }
-        }
-    }
-    out
-}
-fn hex(n: u8) -> char {
-    match n {
-        0..=9 => (b'0' + n) as char,
-        10..=15 => (b'A' + (n - 10)) as char,
-        _ => '?',
-    }
-}
-
