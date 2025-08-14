@@ -32,6 +32,7 @@ cd LeoNTP_QUERY
 ```bash
 LeoNTP_QUERY/
 ├── Cargo.toml
+├── Makefile
 ├── LeoNTP-config.ini       # Configuration file
 ├── src/
 │   ├── LeoNTP-main_full.rs # Main program
