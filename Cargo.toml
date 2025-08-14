@@ -1,0 +1,14 @@
+[package]
+name = "LeoNTP-main_full"
+version = "0.1.0"
+edition = "2021"
+authors = ["cbtsgithub <cbtsgithub@kuro-home.ovh"]
+description = "LeoNTP client with config in INI file"
+license = "MIT"
+
+[dependencies]
+rust-ini = "0.20"
+
+[[bin]]
+name = "LeoNTP-main_full"
+path = "src/LeoNTP-main_full.rs"
