@@ -114,9 +114,14 @@ leontp	server	uptime, packets_sent, packets_received, sync_status
 
 ### **Example query in InfluxDB:**
 ```bash
-from(bucket: "leontp_data")
-  |> range(start: -1h)
-  |> filter(fn: (r) => r._measurement == "leontp")
+from(bucket: "DB_LEONTP")
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r["_measurement"] == "Measurements")
+  |> filter(fn: (r) => r["_field"] == "Nb_NTP_Requests")
+  |> filter(fn: (r) => r["host"] == "NTP01")
+  |> derivative(unit: 1s, nonNegative: true, columns: ["_value"], timeColumn: "_time")  
+  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+  |> yield(name: "mean")
 ```
 
 ### **7. 🚀 Usage**
