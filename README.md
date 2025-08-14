@@ -46,11 +46,36 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
 ```
 
-### **4. Build the project**
+### **4. Build the project:**
 ```bash
 cargo build --release --bin main_full
 ```
+### **or:**
 
+**Compile:**
+```bash
+make build
+```
+
+**Run the program:**
+```bash 
+make run
+```
+
+**Clean:**
+```bash 
+make clean
+```
+
+**Compile and run with debug:**
+```bash
+make debug
+```
+
+**Complete rebuild:**
+```bash
+make rebuild
+```
 ### **5. 📂 Configuration**
 
 All configuration is stored in LeoNTP-config.ini at the root of the project.
