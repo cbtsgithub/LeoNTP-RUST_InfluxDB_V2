@@ -151,10 +151,15 @@ from(bucket: "DB_LEONTP")
 ```
 
 ### **7. 🚀 Usage**
-Run the binary
+Run the binary and ommit the config file if it is in the same directory or indicate it:
 ```bash
-./target/release/main_full
+/etc/LeoNTP-main_full
 ```
+or
+```bash
+/etc/LeoNTP-main_full /root/LeoNTP_QUERY/LeoNTP-config.ini
+```
+
 ### **8. Example of Grafana dashboard using those metrics** <img width="42" height="47" alt="image" src="https://github.com/user-attachments/assets/ff8dc168-bcd4-43eb-ae17-5fdd828ed456" />
 <img width="1585" height="545" alt="image" src="https://github.com/user-attachments/assets/73cf7ff4-b2c9-4842-a739-50d610d84e70" />
 This dashboard is the following one : Grafana-Dashboard-NTP.json
