@@ -6,6 +6,17 @@
 
 ## 📌 Purpose
 
+I needed to keep track of my Stratum 1 NTP server to monitor the ongoing request rate and adjust my network accordingly. There was already a Python script for this, but I wanted significantly better performance—so I switched to Rust.
+
+After rewriting the program in Rust, it was time for the real test: how would it stack up against the Python version? I ran the same workload on both implementations, carefully measuring execution time, CPU usage, and memory consumption. **The results were, frankly, jaw-dropping**:
+
+```bash === Results ===
+Rust   : 131.91 ms | Avg. CPU: 0.00 %  | Avg. memory: 0.00 MiB
+Python : 309.99 ms | Avg. CPU: 24.04 % | Avg. memory: 29 286.00 MiB
+```
+
+Rust was more than twice as fast, used virtually no CPU, and consumed almost no memory. The Python script, while functional, was comparatively heavy and slow. For my use case—where efficiency is everything—Rust didn’t just win, it obliterated the competition.
+
 This Rust-based tool queries a **LeoNTP time server** for its status and statistics and optionally sends the retrieved data to an **InfluxDB V2** database for monitoring and analysis.  
 It is designed for system administrators, time synchronization enthusiasts, or anyone wanting to collect NTP statistics in a modern and automated way.
 
