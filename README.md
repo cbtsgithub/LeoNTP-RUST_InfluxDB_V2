@@ -1,7 +1,7 @@
 # LeoNTP Data Query Tool
 
 > **Acknowledgment:**  
-> This project was inspired by the great work of the [LeoNTP (Leo BODNAR) & UPTRONICS team] (https://leontp.com/firmware/ & https://store.uputronics.com) and their **amazing LeoNTP time server**.  
+> This project was inspired by the great work of the [Leo Bodnar (https://www.leobodnar.com) & UPTRONICS team (https://store.uputronics.com)] (https://leontp.com/firmware) and their **amazing LeoNTP time server**.  
 > A huge thank you to them for providing such a solid and reliable time synchronization solution.
 
 ## 📌 Purpose
