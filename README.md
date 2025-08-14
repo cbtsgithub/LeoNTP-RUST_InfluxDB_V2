@@ -6,7 +6,7 @@
 
 ## 📌 Purpose
 
-This Rust-based tool queries a **LeoNTP time server** for its status and statistics and optionally sends the retrieved data to an **InfluxDB** database for monitoring and analysis.  
+This Rust-based tool queries a **LeoNTP time server** for its status and statistics and optionally sends the retrieved data to an **InfluxDB V2** database for monitoring and analysis.  
 It is designed for system administrators, time synchronization enthusiasts, or anyone wanting to collect NTP statistics in a modern and automated way.
 
 ---
@@ -112,7 +112,7 @@ Data is written to InfluxDB in the following format:
 Measurement	Tags	Fields
 leontp	server	uptime, packets_sent, packets_received, sync_status
 
-### **Example query in InfluxDB:**
+### **Example query in InfluxDB v2:**
 ```bash
 from(bucket: "DB_LEONTP")
   |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
