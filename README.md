@@ -155,6 +155,9 @@ Run the binary
 ```bash
 ./target/release/main_full
 ```
+### **8. 🚀 Example of Grafana dashboard using those metrics**
+<img width="1585" height="545" alt="image" src="https://github.com/user-attachments/assets/73cf7ff4-b2c9-4842-a739-50d610d84e70" />
+
 
 Make sure LeoNTP-config.ini is present in the same directory as the binary.
 ### **📜 License**
