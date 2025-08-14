@@ -155,7 +155,7 @@ Run the binary
 ```bash
 ./target/release/main_full
 ```
-### **8. 🚀 Example of Grafana dashboard using those metrics**
+### **8. Example of Grafana dashboard using those metrics** <img width="42" height="47" alt="image" src="https://github.com/user-attachments/assets/ff8dc168-bcd4-43eb-ae17-5fdd828ed456" />
 <img width="1585" height="545" alt="image" src="https://github.com/user-attachments/assets/73cf7ff4-b2c9-4842-a739-50d610d84e70" />
 
 
