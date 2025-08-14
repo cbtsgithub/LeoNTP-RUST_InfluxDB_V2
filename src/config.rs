@@ -1,5 +1,7 @@
 use ini::Ini;
 use std::error::Error;
+use std::path::PathBuf;
+use std::env;
 
 pub struct LeoNTP {
     pub ipaddr: String,
@@ -26,6 +28,7 @@ pub struct Config {
 }
 
 impl Config {
+    /// Charge le fichier INI depuis un chemin donné
     pub fn load(path: &str) -> Result<Self, Box<dyn Error>> {
         let ini = Ini::load_from_file(path)?;
 
@@ -72,21 +75,24 @@ impl Config {
             .eq_ignore_ascii_case("true");
 
         Ok(Config {
-            leontp: LeoNTP {
-                ipaddr,
-                portnum,
-            },
-            influxdb: InfluxDB {
-                host,
-                port,
-                token,
-                bucket,
-                org,
-            },
-            options: Options {
-                show_stats,
-                send_to_influxdb,
-            },
+            leontp: LeoNTP { ipaddr, portnum },
+            influxdb: InfluxDB { host, port, token, bucket, org },
+            options: Options { show_stats, send_to_influxdb },
         })
+    }
+
+    /// Détermine le chemin du fichier INI depuis un argument ou le répertoire de l'exécutable
+    pub fn resolve_path_from_args_or_exe(default_filename: &str) -> Result<PathBuf, Box<dyn Error>> {
+        let mut args = env::args();
+        args.next(); // ignore le nom du programme
+
+        if let Some(custom_path) = args.next() {
+            return Ok(PathBuf::from(custom_path));
+        }
+
+        let exe_path = env::current_exe()?;
+        let exe_dir = exe_path.parent()
+            .ok_or("Impossible de déterminer le répertoire de l'exécutable")?;
+        Ok(exe_dir.join(default_filename))
     }
 }
